@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'main/css/sign_up.css' %}">
+</head>
+<body>
+<div class="container">
+    <div>
+    <form class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <p class="title">Register </p>
+            <p class="message">Signup now and get full access to our app. </p>
+
+        <label>
+                <input required="" placeholder="" name="title" type="text" class="input">
+                <span>Title</span>
+            </label>
+
+
+            <label>
+                <input required="" placeholder="" name="img" type="file" class="input">
+            </label>
+
+            <label>
+                <textarea style="resize: none" name="description" placeholder="Description" class="input" id="" cols="30" rows="10"></textarea>
+            </label>
+
+            <label>
+                <select name="teg" id="">
+                    {% for i in teg %}
+                        <option class="input" value="{{ i.teg }}">{{i.teg}}</option>
+                    {% endfor%}
+                </select>
+            </label>
+
+            <button class="submit">Publish</button>
+            <p class="signin">Already have an acount ? <a href="#">Signin</a></p>
+    </form>
+    </div>
+</div>
+</body>
+</html>

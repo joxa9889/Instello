@@ -1,0 +1,94 @@
+{% extends 'base/base-2.html' %}
+
+{% block content %}
+
+<div class="main-content">
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+         style="min-height: 600px; background-image: url({{ imgs.back_img.url }}); background-size: cover; background-position: center top;">
+
+        <!-- Header container -->
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+                <div class="card card-profile shadow">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 order-lg-2">
+                            <div class="card-profile-image">
+                                <a href="#">
+                                    <img src="{{ user.avatar.url }}"
+                                         class="rounded-circle">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+                            <a href="{% url 'change_back' %}" style="color: gray" class="btn btn-sm btn-default float-right">Change Img</a>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 pt-md-4">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                                    <div>
+                                        <span class="heading">{{ obj|length }}</span>
+                                        <span class="description">Posts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3>
+                                {{ user.first_name }} {{ user.last_name }}
+                            </h3>
+                            <hr class="my-4">
+                            <p>{{ user.bio }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 order-xl-1">
+                <div class="card bg-secondary shadow">
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">Posts</h3>
+                            </div>
+                            <div class="col-4 text-right">
+                                <a href="{% url 'add_post' %}" class="btn btn-sm btn-primary">Add post</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            {% for i in obj %}
+                                <div class="col-4 mb-4">
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="{{ i.img.url }}" style="height: 220px" class="card-img-top" alt="...">
+                                        <div class="text-center mt-2">
+                                            <p class="card-text"><a href="{% url 'full_page' i.id %}">{{ i.title }}</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6 m-auto text-center">
+            <div class="copyright">
+                <p>Made by Javohir and Abdullokh</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock content %}
